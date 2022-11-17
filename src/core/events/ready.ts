@@ -7,7 +7,7 @@ import { ActivityType } from 'discord.js'
 
 export async function ready() {
   log(`${client.user!.tag} serving ${client.guilds.cache.size} servers.`)
-  client.user!.setActivity(`DAILY MAINTENANCES (DEBUGGING)`, { type: ActivityType.Playing })
+  client.user!.setActivity(`I'm Pomu!`, { type: ActivityType.Playing })
   if (isMainThread) {
     debug('community notifier...')
     import('../../modules/community/communityNotifier')

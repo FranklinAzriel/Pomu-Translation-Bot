@@ -1,17 +1,18 @@
 export const emoji: Record<Name, EmojiCode> = {
-  respond: '<:LunaRespond:814173011313295370>',
-  deepl: '<:deepl:835081601003290635>',
+  respond: '<:NinaExcited:1009724066346840114>',
+  deepl: '<:deepl:1009723703807987772>',
   nbsp: '<:nbsp:832910690998026260>',
-  discord: '<:Discord:832902118301106216>',
-  holo: '<:Hololive:832638929919803422>',
-  ping: '<:WatamePing:864533105821220894>',
-  tc: '<:TwitCasting:832638929608900689>',
-  yt: '<:YouTube:832638929802493962>',
-  peek: '<:LunaPeek:873613928867975248>',
-  niji: '<:nijisanji:893782660156112986>',
+  discord: '<:Discord:1009723380188061746>',
+  holo: '<:Hololive:1009723078722469968>',
+  ping: '<:LuLuPeek:1009722823075430460>',
+  tc: '<:TwitCasting:1009722538080882760>',
+  yt: '<:YouTube:1009722198073815122>',
+  peek: '<:PomuPeek:1009721716295090206>',
+  niji: '<:nijisanji:1009718487364673566>',
 } as const
 
 ///////////////////////////////////////////////////////////////////////////////
 
 type Name = string
 type EmojiCode = string
+
