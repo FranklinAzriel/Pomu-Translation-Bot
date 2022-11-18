@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   bot:
-    build: .
+    build: .jppomu
     environment:
       DISCORD_PROD_TOKEN: ${DISCORD_PROD_TOKEN}
       DEEPL_KEY: ${DEEPL_KEY}
