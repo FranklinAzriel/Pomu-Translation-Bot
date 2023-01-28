@@ -2,7 +2,7 @@ import EventEmitter from 'events'
 import { isEmpty } from 'ramda'
 import { DexFrame, getFrameList, isPublic } from './frames'
 import { isSupported } from '../../core/db/streamers'
-import { debug, removeDupeObjects } from '../../helpers'
+import { removeDupeObjects } from '../../helpers'
 
 export const frameEmitter = FrameEmitter()
 
@@ -18,9 +18,9 @@ async function continuouslyEmitNewFrames(
   emitter: EventEmitter,
   previousFrames: DexFrame[] = [],
 ): Promise<void> {
-  debug('getting frames...')
+  console.log('getting frames...')
   const allFrames = await getFrameList()
-  debug('got frames!')
+  console.log('got frames!')
   const newFrames = removeDupeObjects(
     allFrames?.filter(
       (frame) => isNew(frame, previousFrames) && !isFreeChat(frame) && isPublic(frame),

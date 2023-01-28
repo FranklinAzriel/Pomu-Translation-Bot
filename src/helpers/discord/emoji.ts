@@ -4,6 +4,7 @@ export const emoji: Record<Name, EmojiCode> = {
   nbsp: '<:nbsp:832910690998026260>',
   discord: '<:Discord:1009723380188061746>',
   holo: '<:Hololive:1009723078722469968>',
+  Speaker: '<:Speaker:1054441562286850239>',
   ping: '<:LuLuPeek:1009722823075430460>',
   tc: '<:TwitCasting:1009722538080882760>',
   yt: '<:YouTube:1009722198073815122>',
@@ -15,4 +16,3 @@ export const emoji: Record<Name, EmojiCode> = {
 
 type Name = string
 type EmojiCode = string
-

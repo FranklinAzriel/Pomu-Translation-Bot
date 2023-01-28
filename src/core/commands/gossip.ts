@@ -32,7 +32,7 @@ export const gossip: Command = {
         `,
       },
       remove: {
-        success: `${emoji.holo} Stopped relaying gossip`,
+        success: `${emoji.Speaker} Stopped relaying gossip`,
         failure: oneLine`
           :warning: Gossip about ${streamer} wasn't already being relayed
           in <#${intr.channel!.id}>. Are you in the right channel?

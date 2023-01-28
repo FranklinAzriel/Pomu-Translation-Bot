@@ -4,7 +4,7 @@ import { CommandInteraction, Guild, GuildMember, Message, Snowflake } from 'disc
 import { isGuild, hasRole, getGuildId } from '../../../helpers/discord'
 import { GuildSettings, BlacklistItem } from '../models'
 import { config, PermLevel } from '../../../config'
-import { asyncFind, debug } from '../../../helpers'
+import { asyncFind } from '../../../helpers'
 import { UpdateQuery } from 'mongoose'
 import { DocumentType } from '@typegoose/typegoose'
 import { client } from '../../lunaBotClient'
@@ -28,10 +28,7 @@ export function getSettings(
 }
 
 export function getAllSettings(): GuildSettings[] {
-  debug('getting all settings')
-  const result = client.guilds.cache.map(getGuildSettings)
-  debug('done getting all settinlgs')
-  return result
+  return client.guilds.cache.map(getGuildSettings)
 }
 
 export function addBlacklisted(g: Guild | Snowflake, item: BlacklistItem): void {

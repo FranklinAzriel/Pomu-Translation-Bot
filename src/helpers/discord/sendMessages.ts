@@ -16,7 +16,7 @@ import {
   ThreadChannel,
   ContextMenuCommandInteraction,
 } from 'discord.js'
-import { debug, warn } from '../logging'
+import { warn } from '../logging'
 import { canBot } from './general'
 const { isArray } = Array
 
@@ -54,12 +54,12 @@ export async function send(
   channel: TextBasedChannel | ThreadChannel | undefined,
   content: string | MessageCreateOptions | MessagePayload,
 ): Promise<Message | undefined> {
-  debug('checking perms..')
+  console.log('checking perms..')
   if (canBot('SendMessages', channel)) {
-    debug('done checking perms, now sending...')
+    console.log('done checking perms, now sending...')
     return channel!.send(content)
       .then((msg) => {
-        debug('finished sending.')
+        console.log('finished sending.')
         return msg
       })
       .catch((e) => warn(`${channel!.id} ${e}`))

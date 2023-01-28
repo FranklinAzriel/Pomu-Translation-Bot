@@ -10,7 +10,9 @@ import { client } from '../../lunaBotClient'
 import { RelayedComment } from '../models/RelayedComment'
 import { GuildData, BlacklistNotice, GuildDataDb } from '../models/GuildData'
 import { YouTubeChannelId } from '../../../modules/holodex/frames'
-import { debug } from '../../../helpers'
+import Enmap from 'enmap'
+
+export const guildDataEnmap: Enmap<Snowflake, GuildData> = new Enmap({ name: 'guildData' })
 
 export type ImmutableRelayHistory = ImmutableMap<VideoId, RelayedComment[]>
 
@@ -65,16 +67,16 @@ export async function getFlatGuildRelayHistory (
 export async function addToGuildRelayHistory (
   videoId: VideoId, cmt: RelayedComment, g: Guild | Snowflake
 ): Promise<void> {
-  debug('adding to guild relay history...')
-  debug('getting guild data...')
+  console.log('adding to guild relay history...')
+  console.log('getting guild data...')
   const history    = (await getGuildData (g)).relayHistory
-  debug('got guild data.')
+  console.log('got guild data.')
   const cmts = history.get(videoId) ?? []
   const newHistory = setKey(videoId, [...cmts, cmt])(history)
-  debug('updating guild data...')
+  console.log('updating guild data...')
   updateGuildData(g, { relayHistory: newHistory })
-  debug('updated guild data.')
-  debug('...done adding to guild relay history')
+  console.log('updated guild data.')
+  console.log('...done adding to guild relay history')
 }
 
 export async function deleteRelayHistory (
@@ -126,7 +128,7 @@ export async function getGuildData (g: Guild | Snowflake): Promise<GuildData> {
 }
 
 export async function clearOldData(): Promise<void> {
-  debug('clearing old data...')
+  console.log('clearing old data...')
   const now = new Date().getTime()
   const WEEK = 7 * 24 * 60 * 60 * 1000
   const isRecentHist = (v: RelayedComment[]) =>
@@ -135,26 +137,26 @@ export async function clearOldData(): Promise<void> {
   const isRecentV = (v: Snowflake) => snowflakeToUnix(v) - now < WEEK
 
   client.guilds.cache.forEach(async (g) => {
-    debug('clearing for guild '+ g.id)
+    console.log('clearing for guild '+ g.id)
     const guildData = await getGuildData(g)
     const newRelayNotices = filter(guildData.relayNotices, isRecentV)
     const newBlacklistNotices = filter(guildData.blacklistNotices, isRecentK)
     const newRelayHistory = filter(guildData.relayHistory, isRecentHist)
-    debug('finished computing new stuff')
+    console.log('finished computing new stuff')
 
-    debug('updating guild data 1/1')
+    console.log('updating guild data 1/1')
     updateGuildData(guildData._id, {
       relayNotices: newRelayNotices,
       relayHistory: newRelayHistory,
       blacklistNotices: newBlacklistNotices,
     })
-    debug('done with guild ' + g.id)
+    console.log('done with guild ' + g.id)
   })
-  debug('done clearing')
+  console.log('done clearing')
 }
 
 export function deleteGuildData(g: Snowflake): void {
-  // temporarily deleted to not use enmap
+  if (guildDataEnmap.has(g)) guildDataEnmap.delete(g)
 }
 
 ///////////////////////////////////////////////////////////////////////////////

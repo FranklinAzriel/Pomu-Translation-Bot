@@ -15,3 +15,4 @@ export async function tl(text: string): Promise<string> {
 
   return wasEng && hasTl ? text : tlObject?.translations?.[0].text ?? text
 }
+

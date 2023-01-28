@@ -6,8 +6,8 @@ dotenv.config({ path: __dirname + '/../../.env' })
 
 const commands = loadAllCommands()
 
-// const clientId = '813040054452355114' // -- prod
-const clientId = '1009582615394783272' // -- dev
+const clientId = '1009582615394783272'
+// const clientId = '819785987420848128'
 // const guildId = '797780320405553223'
 
 const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_PROD_TOKEN)
@@ -16,18 +16,17 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_PROD_TOKEN)
 
 ;(async () => {
   try {
-    const { log } = console
-    log('Started refreshing application (/) commands.')
+    console.log('Started refreshing application (/) commands.')
     const body = [...commands.map((v, k) => {
-      log(`jsonning ${k}`)
+      console.log(`jsonning ${k}`)
       return v.slash.toJSON()
     }).toList().toArray()]
 
-    log(body)
-    log('====================')
+    console.log(body)
+    console.log('====================')
     await rest.put(Routes.applicationCommands(clientId), { body })
 
-    log('Successfully reloaded application (/) commands.')
+    console.log('Successfully reloaded application (/) commands.')
   } catch (error) {
     console.error(error)
   }

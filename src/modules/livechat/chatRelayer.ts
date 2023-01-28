@@ -77,7 +77,7 @@ tldex.on('subscribeSuccess', (msg) => {
     return
   }
 
-  debug('subsucc ' + JSON.stringify(msg))
+  console.log('subsucc ' + JSON.stringify(msg))
 })
 
 tldex.on('subscribeError', (msg) => {
@@ -184,7 +184,7 @@ async function runTask(task: Task): Promise<void> {
     const ch = findTextChannel(task.cid)
     const thread = task.tlRelay ? await findFrameThread(task.vId, task.g) : null
 
-    log(`${task.vId} | ${task.content}`);
+    log(`[MESSAGE NOT SENT (DEBUG MODE)] ${task.vId} | ${task.content}`);
     // const lastMsg = ch?.lastMessage
     // const isBotLastPoster = lastMsg?.author?.id === client.user?.id
     // // // this code is ugly and duplicated but im in a hurry
@@ -257,7 +257,7 @@ function saveComment(
   const timestamp = !frame.start_actual
     ? 'prechat'
     : new Date(loggedTime - startTime).toISOString().substr(11, 8)
-  debug('saving comment...')
+  console.log('saving comment...')
   addFn(
     frame.id,
     {
@@ -272,5 +272,5 @@ function saveComment(
     },
     gid!,
   )
-  debug('saving comment finished')
+  console.log('saving comment finished')
 }

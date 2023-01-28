@@ -22,14 +22,8 @@ export interface CommunityPost {
 ///////////////////////////////////////////////////////////////////////////////
 
 function extractYtData(ytData: any, ytId: string): CommunityPost | undefined {
-  const tabs = ytData.contents?.twoColumnBrowseResultsRenderer.tabs
-  const communityTab = tabs.find((t: any) => t?.tabRenderer?.title === 'Community')
-  const content = communityTab?.tabRenderer?.content
-  if (content === undefined) {
-    return undefined
-  }
   const latestPost =
-    content.sectionListRenderer
+    ytData.contents?.twoColumnBrowseResultsRenderer.tabs[3].tabRenderer.content.sectionListRenderer
       .contents[0].itemSectionRenderer.contents[0].backstagePostThreadRenderer?.post
       .backstagePostRenderer
   const textEls = latestPost?.contentText.runs as any[]

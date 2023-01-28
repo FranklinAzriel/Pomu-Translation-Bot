@@ -1,4 +1,4 @@
-import { ciEquals, debug, doNothing, isJp, match } from '../../helpers'
+import { ciEquals, doNothing, isJp, match } from '../../helpers'
 import { DexFrame } from '../holodex/frames'
 import { Streamer, StreamerName, streamers, streamersMap } from '../../core/db/streamers'
 import { emoji } from '../../helpers/discord'
@@ -115,7 +115,6 @@ export async function processComments(
   cmts: ChatComment[],
   entrs?: Entries,
 ): Promise<Task[]> {
-  debug('computing tasks...')
   const tasks = await Promise.all(
     cmts.flatMap(async (cmt) => {
       const isTl_ = cmt.isTl || isTl(cmt.body)
@@ -178,7 +177,6 @@ export async function processComments(
       return [...sendTasks, ...(mustSave_ ? [saveTask] : [])]
     }),
   )
-  debug('done computing tasks')
 
   return tasks.flat()
 }
@@ -190,7 +188,7 @@ function relayCameo(
   const cleaned = cmt.body.replaceAll('`', "'")
   const stalked = streamers.find((s) => s.ytId === cmt.id)
   const groups = stalked?.groups as string[] | undefined
-  const camEmj = groups?.includes('Nijisanji') ? emoji.niji : emoji.holo
+  const camEmj = groups?.includes('Nijisanji') ? emoji.niji : emoji.niji
   const emj = isGossip ? emoji.peek : camEmj
   const mustTl = deepLTl && g.deepl
   const line1 = `${emj} **${cmt.name}** in **${to}**'s chat: \`${cleaned}\``
@@ -233,7 +231,7 @@ function relayTlOrStreamerComment({
 
   const vauthor = streamersMap.get(cmt.id)
   const groups = vauthor?.groups as string[] | undefined
-  const vemoji = groups?.includes('Nijisanji') ? emoji.niji : emoji.holo
+  const vemoji = groups?.includes('Nijisanji') ? emoji.niji : emoji.niji
   const premoji = isATl ? ':speech_balloon:' : isStreamer(cmt.id) ? vemoji : ':tools:'
 
   const url =

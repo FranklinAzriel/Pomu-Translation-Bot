@@ -10,8 +10,9 @@ import { nijisanji } from './nijisanji'
 import { nijisanji_id } from './nijisanji id'
 import { nijisanji_jp } from './nijisanji jp'
 import { nijisanji_kr } from './nijisanji kr'
+import { IdolComp } from './IdolComp'
 
-export const streamers = StreamerArray([...hololive, ...nijisanji, ...nijisanji_id, ...nijisanji_jp, ...nijisanji_kr, ...indies] as const)
+export const streamers = StreamerArray([ ...nijisanji, ...nijisanji_id, ...nijisanji_kr, ...nijisanji_jp,  ...hololive, ...IdolComp, ...indies] as const)
 
 export const streamersMap: Map<YouTubeChannelId, Streamer> = new Map(
   streamers.map((s) => [s.ytId, s]),
