@@ -18,10 +18,6 @@ mongoose.connect(MONGODB_URL, {
 
 process.on('uncaughtException', function (err) {
   console.log('Uncaught exception: ' + err)
-  client.guilds.cache.find((g) => g.id === '')
-  const ch = client.channels.cache.get('798600485652398120')
-  ch?.isTextBased() && ch.send('<@150696503428644864> UNCAUGHT EXCEPTION')
-
   console.log(err.stack)
 })
 
