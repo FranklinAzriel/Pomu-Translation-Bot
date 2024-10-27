@@ -119,6 +119,16 @@ export const indies = [
     twitter: 'LichVtuber',
     aliases: ['Apricot the Lich', 'Froot'],
   },
+  {
+    name: 'Yuuki Sakuna',
+    ytId: 'UCrV1Hf5r8P148idjoSfrGEQ',
+    chName: 'Sakuna Ch. 結城さくな',
+    picture:
+      'https://yt3.googleusercontent.com/t9CcBvjTjs5D_sLZjtGkcfaTyiZCrx0nyOf7ekj3Fut9gZD76G00x12TK8Jg4czmBWjXcUtP9yE=s160-c-k-c0x00ffffff-no-rj',
+    groups: ['indies'],
+    twitter: 'yuki_sakuna',
+    aliases: ['Yuuki Sakuna', 'Yuki Sakuna', 'Yuuki', 'Yuki', 'Sakuna'],
+  },
 ] as const
 
 
