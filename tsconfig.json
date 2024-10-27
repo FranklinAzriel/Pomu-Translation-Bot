@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
+    "lib": ["esnext", "DOM"],
     "outDir": "./build",
     "allowJs": true,
     "target": "esnext",
